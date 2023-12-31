@@ -86,7 +86,7 @@ alias la='ls -alh' # makes ls command more verbose and uses human-readable file 
 
 # dotfiles managed as bare Git repository
 # see https://www.ackama.com/what-we-think/the-best-way-to-store-your-dotfiles-a-bare-git-repository-explained/
-alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles-git/ --work-tree=$HOME'
 
 # Android
 export ANDROID_HOME=$HOME/Android/Sdk

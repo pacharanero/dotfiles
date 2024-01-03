@@ -59,12 +59,10 @@ alias yt='youtube-dl'
 alias bb='brave-browser'
 alias brave='brave-browser'
 alias c.='code .'
-
 # quick update and profile changes aliases
 alias doupdates="sudo apt-get update && sudo apt-get -y dist-upgrade && sudo apt autoclean && sudo apt autoremove"
 alias profile="sudo nano /etc/profile && source /etc/profile"
 alias configs="/home/marcus/code/s/configs.sh"
-
 # apt and package management aliases
 alias sai='sudo apt install'
 alias sar='sudo apt remove'
@@ -73,20 +71,19 @@ alias sacs='sudo apt-cache search'
 alias sad='sudo apt dist-upgrade'
 alias saar='sudo apt-add-repository'
 alias saa='sudo apt autoremove'
-
 # git
 alias branches="git log --graph --decorate --oneline"
 alias git-remote-ls="git remote get-url --all origin"
-
 # file operations aliases
 #alias cp='cp -iv' # makes cp command more verbose and ask for confirmation on overwrite/delete
 #alias mv='mv -iv' # makes mv command more verbose and ask for confirmation on overwrite/delete
 #alias rm='rm -i'  # makes rm command more verbose and ask for confirmation on overwrite/delete
 alias la='ls -alh' # makes ls command more verbose and uses human-readable file sizes
-
 # dotfiles managed as bare Git repository
 # see https://www.ackama.com/what-we-think/the-best-way-to-store-your-dotfiles-a-bare-git-repository-explained/
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles-git/ --work-tree=$HOME'
+# geekbench
+alias geekbench='/var/geekbench/Geekbench-6.2.2-Linux/geekbench6
 
 # Android
 export ANDROID_HOME=$HOME/Android/Sdk
@@ -115,7 +112,17 @@ eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
 # ### TAB COMPLETIONS ###
-
+# OVERCAST
+_overcast_completions() {
+    local cur=${COMP_WORDS[COMP_CWORD]}
+    COMPREPLY=($(compgen -W "$(overcast completions)" -- "$cur"))
+    return 0
+}
+complete -F _overcast_completions overcast
+zstyle ':completion:*' completer _expand_alias _complete _ignored
+setopt INC_APPEND_HISTORY
+# MOSH
+compdef mosh=ssh
 # required for ZSH to be able to work with bash tab completion:
 autoload -U +X bashcompinit && bashcompinit
 
@@ -135,21 +142,6 @@ else
 fi
 unset __conda_setup
 # <<< conda init <<<
-
-# Overcast Tab completion
-_overcast_completions() {
-    local cur=${COMP_WORDS[COMP_CWORD]}
-    COMPREPLY=($(compgen -W "$(overcast completions)" -- "$cur"))
-    return 0
-}
-complete -F _overcast_completions overcast
-
-zstyle ':completion:*' completer _expand_alias _complete _ignored
-
-setopt INC_APPEND_HISTORY
-
-# mosh tab completion
-compdef mosh=ssh
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/home/marcus/tmp/google-cloud-sdk/path.zsh.inc' ]; then . '/home/marcus/tmp/google-cloud-sdk/path.zsh.inc'; fi

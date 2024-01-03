@@ -83,7 +83,7 @@ alias la='ls -alh' # makes ls command more verbose and uses human-readable file 
 # see https://www.ackama.com/what-we-think/the-best-way-to-store-your-dotfiles-a-bare-git-repository-explained/
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles-git/ --work-tree=$HOME'
 # geekbench
-alias geekbench='/var/geekbench/Geekbench-6.2.2-Linux/geekbench6
+alias geekbench='/var/geekbench/Geekbench-6.2.2-Linux/geekbench6'
 
 # Android
 export ANDROID_HOME=$HOME/Android/Sdk
